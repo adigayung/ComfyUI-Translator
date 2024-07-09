@@ -15,12 +15,11 @@ class CLIPTextAutoTranslate:
             detected_lang = detect(text)
             if detected_lang != 'en':
                 translator = Translator()
-                text = translator.translate(text, dest='en').text
+                translation = translator.translate(text, dest='en')
+                text = translation.text if hasattr(translation, 'text') else translation
         tokens = clip.tokenize(text)
         cond, pooled = clip.encode_from_tokens(tokens, return_pooled=True)
         return ([[cond, {"pooled_output": pooled}]], )
-
-
 
 # Daftar node yang ingin diekspor dengan nama mereka
 NODE_CLASS_MAPPINGS = {
