@@ -1,5 +1,6 @@
 from googletrans import Translator
 from langdetect import detect
+import traceback
 
 class CLIPTextAutoTranslate:
     @classmethod
@@ -14,9 +15,14 @@ class CLIPTextAutoTranslate:
         if text.strip():
             detected_lang = detect(text)
             if detected_lang != 'en':
-                translator = Translator()
-                translation = translator.translate(text, dest='en')
-                text = translation.text if hasattr(translation, 'text') else translation
+                try:
+                    translator = Translator()
+                    translation = translator.translate(text, dest='en')
+                    text = translation.text if hasattr(translation, 'text') else translation
+                except Exception as e:
+                    print(f"Translation error: {e}")
+                    traceback.print_exc()
+                    # Anda bisa memilih untuk melanjutkan dengan teks asli jika terjadi error
         tokens = clip.tokenize(text)
         cond, pooled = clip.encode_from_tokens(tokens, return_pooled=True)
         return ([[cond, {"pooled_output": pooled}]], )
