@@ -1,4 +1,4 @@
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 from langdetect import detect
 import traceback
 
@@ -16,9 +16,8 @@ class CLIPTextAutoTranslate:
             detected_lang = detect(text)
             if detected_lang != 'en':
                 try:
-                    translator = Translator()
-                    translation = translator.translate(text, dest='en')
-                    text = translation.text if hasattr(translation, 'text') else translation
+                    translator = GoogleTranslator(source='auto', target='en')
+                    text = translator.translate(text)
                 except Exception as e:
                     print(f"Translation error: {e}")
                     traceback.print_exc()
