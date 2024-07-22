@@ -1,2 +1,7 @@
 # ComfyUI-Translator
-Auto translate all languages ​​to english
+Any language will be translated to English when you enter a prompt into the node. Here, I am using the googletrans library.
+
+<b>instalation:</b>
+for comfyUI python embeded
+cd custom_nodes\ComfyUI-Translator
+..\..\..\python_embeded\python.exe -m pip install -r requirements.txt
