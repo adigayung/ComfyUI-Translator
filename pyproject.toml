@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-translator"
+description = "Auto translate all languages ​​to english"
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["googletrans", "langdetect"]
+
+[project.urls]
+Repository = "https://github.com/adigayung/ComfyUI-Translator"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-Translator"
+Icon = ""
